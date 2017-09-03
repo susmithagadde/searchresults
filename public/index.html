@@ -1,0 +1,67 @@
+<html ng-app="ang4">
+    <head>
+        <title>Forums</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap/css/homestyle.css" rel="stylesheet" type="text/css">
+        
+         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+        <script src="jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+       
+        
+        </head>
+         <body>
+           
+             <div ng-view></div>
+            <script src="angular.min.js"></script>
+                <script type= "text/javascript" src="angular-route.js"></script> 
+             <script type= "text/javascript" src="angular-messages.js"></script> 
+             <script type= "text/javascript" src="angular-cookies.js"></script>
+            <script type="text/javascript">
+                var app = angular.module('ang4', ['ngRoute', 'ngCookies', 'ngMessages']);
+                
+                app.config(function($routeProvider, $locationProvider, $qProvider){
+                        $routeProvider
+                            .when('/', {
+                             templateUrl: '/home.html',
+                            controller: 'ForumsCtrl',
+
+                            })
+               
+                              .when('/filter', {
+                                 templateUrl: '/filter.html',
+                                controller: 'FilterCtrl', 
+                             });
+                    
+                    $qProvider.errorOnUnhandledRejections(false);
+                });
+                     
+                app.controller('ForumsCtrl', function($rootScope, $scope, $http, $cookies, $location){
+                  $scope.currentPage = "filter";
+                  $scope.go = function (page) {
+//                      if($scope.fie1 == 'field1' && $scope.fie2 == 'field2' && $scope.fie3 == 'field3'){
+                    $location.path('/' + page);
+//                      };
+                  };
+          
+                    
+                   });
+            
+                
+                app.controller('FilterCtrl', function($rootScope, $scope, $http, $cookies, $location){
+                    
+                  
+          
+                    
+                   });
+               
+                
+                
+            </script>
+  
+          
+
+    </body>
+</html>
